@@ -1,0 +1,274 @@
+Type script is an extension to JavaScript.
+It is a proramming language build up on JavaScript.
+TypeScript is  superset to JavaScript
+It adds static typing to JavaScript.(as js on its own is dynamic typing)
+
+To install typescript into a project
+npm  install typescript
+
+To compile and run
+npx tsc
+
+
+function add(a,b){
+    return a+b;
+}
+const result=add(2,5);
+console.log(result)
+
+WE can see the output as 7 as an JS code.
+Now send some string values lik '2' and '5'
+
+To the same code above:  add('2','5');
+
+We see the output coming as 25 as an JS code.
+
+Now the reason for using the typescript is the  type of a variable is specified and no other type is allowed.
+
+function add(a:number,b:number){
+    return a+b;
+}
+const result=add('2','5');
+console.log(result)
+
+As a typescript file the above code returns an error saying the variables are of number type and a string cannot be 
+taken as an input.
+
+So before in JavaScript we dont get any errors for problems like these..
+Now we get some errors where we can change our code.
+
+remembet if there is no type specified for a variable i =n typescript then there is a default value for a variable
+"any" is given to a variable which takes any type of value to a variable.
+But it is better to specify the type because if it is not specified there is no use of implementing typescript.it
+will be same as JavaScript.As Js dont have giving these types and all.
+
+
+basically 3 primitive types:
+
+let a: number;
+a=10;
+
+let username:string;
+username='Vamsi';
+
+let value:boolean;
+value=true;
+
+
+
+Some more Complex types:
+
+Like arrays maybe:
+
+let hobbies:string[];
+hobbies=['Sports','coding'];
+
+Like using object types 
+
+let person:{
+    name:string;
+    age:number;
+};
+
+person={
+    name:"Vamsi",
+    age:20
+};
+
+Now array and their obect types declaration can be seen below:
+
+let people:{
+    name:string;
+    age:number;
+}[];
+
+
+Type inference:
+
+let course='Type script ';
+course=12345;
+
+we can see an error saying the course belongs to a string type and type number cannot be assingned.
+This is because even we have not specified the type  of variable 'course' TypeScript will try to find its type
+and takes it.So here it took the type as a String and now if you try to assign it to a number value it returns error.
+
+Union types:
+
+So this is a useful concept we can give more than one primitive type to a variable:
+
+let course: string | number| boolean ='Type script course';
+
+course=100;
+We dont see any error like in the above code.
+
+Assigning type aliases:
+
+So this says that in the code we defined something which gives the 
+types like:
+
+let people:{
+    name:string;
+    age:number;
+}
+
+so here in the above code name is of string type and all is defined.
+But in this concept of assingning type aliases we declare the type with 
+a variable and ise it whenever we need it. AS seen in the below code:
+
+type Person={
+    name:string;
+    age:number;
+};
+let person:Person;
+
+person={
+    name:'Vamsi',
+    age:20
+};
+
+Here we have used something which is using Person so we can use it
+whenever needed by declaring only once.
+
+Diving into functions and function types:
+
+function add(a:number,b:number){
+    return a+b;
+}
+We can specify the return type before starting of the curly braces
+but again we know type script is enough to get the return type so no need to 
+specify the return type of the function.
+
+function print(value:any){
+    console.log(value);
+}
+
+We can see that print function is taking input of a variable with 'any'type
+which says any type of varible can be taken into it.
+
+
+Generics:
+
+So this is to make working easy for a function.Can be seen below:
+
+function insertBeginning(array: any[], value:any){
+    const newArray=[value,...array];
+    return newArray;
+}
+const demoArray=[1,2,3];
+const updatedArray=insertBeginning(demoArray,-1)
+
+The output for the above code will be [-1,1,2,3]
+
+The problem here is that the data type of elements inside the array is set to any but 
+not to any other value because inside the array the datatype of the variables cannot be
+understood by typescript like before.
+
+So now we use Generics to overcome our problem
+from above code:
+fucntion insertBeginning(array: any[], value:any)
+
+Here we use  generics by giving it one type a generic type which will be same for the parameters so now as both 
+of them have the same parameter type the generic would now get its datatype.
+
+function insertBeginning(array: T[], value:T)
+
+Now as it is written into a generic type the typescript will get to know that there is some specific type given 
+in the above code it gets to know that the array is consisting of number datatype.
+
+The below is a code which gives input of strings, The TypeScript get to know that the array is consisting of
+string datatypes and throws an error if you pass any other type.
+
+
+CLASSES AND TYPE SCRIPT:
+
+class Student{
+    firstName:string;
+    lastName:string;
+    age:number;
+    courses:string[];
+
+    constructor(first:string,last:string,age:number,courses:string[])
+    {
+        this.firstName=first;
+        this.lastName=last;
+        thid.age=age;
+        this.courses=courses;
+    }
+    
+    enrol(courseName:string){
+        this.courses.push(courseName);
+    }
+}
+
+const student=new Student('vamsi','some',20,['typescript']);
+
+From the above code we can see that the class Student got a object student and we can access all the elements present in it with 
+the help of object created.
+
+student.enrol('JavaScript');
+
+so on using the above code into the array there are some values inserted.So now we have 2 elements present inside the array:
+typescript and JavaScript.
+
+In JavaScript we dont have any option to set any properties to the elements present.But here we can set the properties of all the 
+elements present inside it.
+
+public is a property set to an element which allows us to access the variable all over the code.
+private is a property set to an element which allows us to access the variable only inside the class.
+
+By default if public or private is not specified for an element it is taken as public.
+
+example:
+private courses:string[];   can be added inside to let it be accesses only inside the class.
+
+constructor(first:string,last:string,age:number,courses:string[])
+The above line can be written as:
+constructor( public first:string,public last:string,public  age:number,private courses:string[] ){}
+
+
+
+INTERFACES AND TYPE SCRIPT:
+
+The INTERFACES code cannot be compiled in JavaScript.
+INTERFACES are just an object type definitions.
+ 
+
+interface Human{
+    firstName: string;
+    age: number;
+
+    greet: () => void;
+}
+
+let vamsi=Human;
+vamsi={
+    firstName:'vamsi',
+    age:20,
+    greet(){
+        console.log('Hello');
+    },
+};
+
+We can also use the type Human (the alias concept used in the above.....  )
+
+interface is simply an alternative to type keyword.But it has an additional feature...
+that the type of an obejct which is implemented by classes can be known .
+
+class Instructor implements Human{
+    firstName:string;
+    age:number;
+    greet(){
+        console.log('Hello !!!!');
+    }
+}
+
+See here the Instructor have the  properties and methods defined in Human interface.
+We can use this for any other new class created.
+
+
+See we got a problem using the npx tsc while compiling in the beginning we solved it by giving
+a specific TypeScript file to compile like: npx tsc--typescript.ts  
+
+We can actually use a command which says npx tsc --init which actually created a  new config file which can help
+us in execition of our typescript file.
+
