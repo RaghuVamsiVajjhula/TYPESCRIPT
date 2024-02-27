@@ -262,4 +262,13 @@ class Instructor implements Human{
     }
 }
 
+See here the Instructor have the  properties and methods defined in Human interface.
+We can use this for any other new class created.
+
+
+See we got a problem using the npx tsc while compiling in the beginning we solved it by giving
+a specific TypeScript file to compile like: npx tsc--typescript.ts  
+
+We can actually use a command which says npx tsc --init which actually created a  new config file which can help
+us in execition of our typescript file.
 
